@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Caixa Eletrônico</title>
+
+	<script>
+
+	var nome = prompt("Insira seu nome:");
+    
+    alert("Olá, " + nome + " é uma prazer ter você por aqui");
+//isNaN == Isso é um não-múmero?; Ex: ":3674
+		var saldo = 100.5; //Variavel Global
+
+		var senha = parseInt(prompt("Insira sua senha"));
+			
+			while (senha !== 3589) {
+				alert("Tente novamente.");
+				senha = parseInt(prompt("Insira sua senha"));
+		} 
+			inicio();
+
+		function inicio() {
+			//ESCOPO
+			//Variavel Local
+			var escolha = parseInt(prompt("Selecione uma opção 1.) Saldo 2.) Extrato 3.) Saque 4.) Depósito 5.) Transferência 6.) Sair"));
+		
+			switch(escolha) {
+				case 1:
+					ver_saldo();
+					break;
+			    case 2: 
+					ver_extrato();
+					break;
+				case 3:
+					fazer_saque();
+					break;
+				case 4:
+					fazer_deposito();
+					break;
+				case 5:
+					fazer_transferencia();
+					break;
+				case 6:
+				sair();
+					break;
+				default:
+				erro();
+				break;
+			}
+		}
+
+		function ver_saldo() {
+			var senha = parseInt(prompt("Insira sua senha"));
+			
+			if (senha == 3589) {
+				alert("Seu saldo atual é: " + saldo);
+				inicio();
+			} else {
+				alert("Senha incorreta."); 
+				ver_saldo();
+			}
+		}
+
+		function fazer_deposito() {
+
+			var deposito = parseFloat(prompt("Qual o valor para depósito?"));
+
+			// Not a Number --> Isso é um não-número?
+			if (isNaN(deposito) || deposito === '') {
+				alert("Por favor, informe um número.");
+				fazer_deposito();
+			} else if (isNaN(deposito) || deposito <= 0) {
+				alert ("Operação não autorizada.");
+				erro();
+			} else {
+				saldo += deposito;
+				//saldo = saldo + deposito;
+				ver_saldo();
+			}
+		}
+
+		function fazer_saque() {
+
+			senha = parseInt(prompt("Insira sua senha"));
+			
+			if (senha == 3589) {
+			var saque = parseFloat(prompt("Qual o valor para saque?"));
+
+			if (isNaN(saque) || saque > saldo) {
+				alert ("Operação não autorizada.");
+				erro();
+			} else if (isNaN(saque) || saque <= 0) {
+				alert ("Operação não autorizada.");
+				erro();
+			} else {
+				saldo -= saque;
+				//saldo = saldo - saque;
+				ver_saldo();
+			}
+		} else {
+			alert ("Senha incorreta.");
+			fazer_saque();
+		}
+			
+	}
+
+		function fazer_transferencia() {
+			senha = parseInt(prompt("Insira sua senha"));
+
+			if (senha == 3589) {
+			var transf = parseFloat(prompt("Qual o valor que irá ser transferido?"));
+
+			if (isNaN(transf) || transf > saldo) {
+				alert ("Operação não autorizada.");
+				erro();
+			} else if (isNaN(transf) || transf <= 0) {
+				alert ("Operação não autorizada.");
+				erro();
+			} else {
+				saldo -= transf;
+				ver_saldo();
+			}
+		} else {
+			alert ("Senha incorreta.");
+			fazer_transferencia();
+		}
+	}
+
+		function ver_extrato() {
+			senha = parseInt(prompt("Insira sua senha"));
+			
+			if (senha == 3589) {
+				alert("Lotería +R$ 20.287 \ncachorro quente -R$ 7 \noutback -R$ 180 \n bolsa Chanel -R$ 20.000 ");
+				inicio();
+			} else {
+				alert ("Senha incorreta.");
+				ver_extrato();
+			}
+		}
+
+		function erro() {
+			alert("Por favor, informe um número entre 1 e 6.");
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm("Você deseja sair?");
+			if (confirma) {
+				window.close(alert(nome + ", foi um prazer ter você por aqui!"));
+			} else {
+				inicio();
+			}
+		}
+
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
